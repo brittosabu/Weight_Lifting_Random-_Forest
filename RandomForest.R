@@ -34,18 +34,18 @@ cleaned_pca = prcomp(cleaned[,1:52],center=TRUE,scale. = TRUE)
 summary(cleaned_pca)
 str(cleaned_pca)   #PCA is not needed here since the almost all the characters has good significance
 
-#Splitting the training data to train and test
+#Splitting the training data to train and validation
 set.seed(07)
 sample  = sample.split(cleaned$classe,SplitRatio = 0.7)
 TrainSet = subset(cleaned,sample==TRUE)
-TestSet  = subset(cleaned,sample==FALSE)
+ValidationSet  = subset(cleaned,sample==FALSE)
 dim(TrainSet)
-dim(TestSet)
+dim(ValidationSet)
 
 #Random Forest Classification
 rfmodel = randomForest(classe~.,data=TrainSet,importance=FALSE)
-rfpredict = predict(rfmodel,newdata=TestSet,type='class')
-table(rfpredict,TestSet$classe)
+rfpredict = predict(rfmodel,newdata=ValidationSet,type='class')
+table(rfpredict,ValidationSet$classe)
 
 #Accuracy on test split data
 accuracy = (1673+1129+1018+955+1079)/(1673+1+9+1129+1+8+1018+1+10+955+3+1079)
