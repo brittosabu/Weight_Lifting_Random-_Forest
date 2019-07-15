@@ -49,7 +49,7 @@ table(rfpredict,TestSet$classe)
 
 #Accuracy on test split data
 accuracy = (1673+1129+1018+955+1079)/(1673+1+9+1129+1+8+1018+1+10+955+3+1079)
-accuracy
+accuracy  #Accuracy is .994
 
 #Predicting for the test data set
 
